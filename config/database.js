@@ -1,15 +1,15 @@
-// Simple database configuration
-console.log('🔧 Database configuration loaded');
+// config/database.js
+const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    console.log('✅ Database connection initialized');
-    console.log('💡 Using development mode - add MongoDB later');
-    return true;
+
+    const conn = await mongoose.connect("mongodb+srv://mugishakelvin75_db_userQYN0TUBreityXc2k:@cluster0.wrrg7ec.mongodb.net/your_database_name?retryWrites=true&w=majority&appName=Cluster0");
+    
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.log('⚠️  Database not available, but server will continue');
-    console.log('💡 Install MongoDB for full functionality');
-    return true;
+    console.error('Database connection error:', error);
+    process.exit(1);
   }
 };
 

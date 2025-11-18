@@ -11,10 +11,10 @@ const bookingSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
-  seatsBooked: {
+  seats: {
     type: Number,
-    required: [true, 'Seats booked is required'],
-    min: [1, 'At least 1 seat must be booked']
+    required: true,
+    min: 1
   },
   totalPrice: {
     type: Number,
@@ -22,13 +22,13 @@ const bookingSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['confirmed', 'cancelled'],
-    default: 'confirmed'
+    enum: ['pending', 'confirmed', 'cancelled', 'completed'],
+    default: 'pending'
   },
-  bookedAt: {
-    type: Date,
-    default: Date.now
-  }
+  pickupLocation: String,
+  notes: String
+}, {
+  timestamps: true
 });
 
 module.exports = mongoose.model('Booking', bookingSchema);
